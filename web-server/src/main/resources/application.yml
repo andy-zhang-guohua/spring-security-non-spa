@@ -1,0 +1,54 @@
+server:
+    port: 9201 #当前服务节点端口
+    contextPath: /
+
+spring:
+  application:
+    name: admin-web #当前应用的名称
+
+  session:
+    store-type : redis
+
+  redis:
+    host : localhost
+    port : 6379
+    database : 4
+    timeout : 30000
+    password :
+    pool :
+      max-active : 8
+      max-wait : -1
+      max-idle : 8
+      min-idle : 0
+
+  aop:
+    proxy-target-class: true
+  ################### DataSource Configuration ##########################
+  datasource :
+    driver-class-name : com.mysql.jdbc.Driver
+    url : jdbc:mysql://localhost:3306/test?useUnicode=true&characterEncoding=utf-8
+    username : root
+    password : Passw0rd
+
+  jpa :
+    properties:
+      hibernate.hbm2ddl.auto : update
+
+# oauth2 安全配置
+security:
+  oauth2:
+    client:
+      accessTokenUri: http://localhost:9299/uaa/oauth/token
+      userAuthorizationUri: http://localhost:9299/uaa/oauth/authorize
+      clientId: admin
+      clientSecret: secret
+    resource:
+      userInfoUri: http://localhost:9299/uaa/user
+      preferTokenInfo: false
+
+logging:
+  level:
+    org.springframework.security: DEBUG
+    org.springframework.web: DEBUG
+    andy.backyard : DEBUG
+

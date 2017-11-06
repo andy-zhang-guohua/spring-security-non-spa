@@ -1,0 +1,1 @@
+<strong>Copyright &copy; 2011-2017 <a href="#"></a></strong>

@@ -1,0 +1,11 @@
+*.iml
+target/*
+.idea/*
+logs/*
+log/*
+*.pdf
+_thumbs
+_thumbs/*
+*/target/*
+
+
