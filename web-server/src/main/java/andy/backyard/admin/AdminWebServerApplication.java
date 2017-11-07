@@ -8,10 +8,8 @@ import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.freemarker.FreeMarkerAutoConfiguration;
 import org.springframework.context.ConfigurableApplicationContext;
-import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.EnableAspectJAutoProxy;
 import org.springframework.scheduling.annotation.EnableAsync;
-import org.springframework.web.context.request.RequestContextListener;
 
 import java.util.Date;
 
@@ -31,15 +29,5 @@ public class AdminWebServerApplication {
         app.setBannerMode(Banner.Mode.OFF);
         ConfigurableApplicationContext applicationContext = app.run(args);
         log.info("应用启动完成 : {}", DateTimeUtils.toLocalDateTime(new Date(applicationContext.getStartupDate())));
-    }
-
-    /**
-     * Add this bean to enable scoped bean injection
-     *
-     * @return
-     */
-    @Bean
-    public RequestContextListener requestContextListener() {
-        return new RequestContextListener();
     }
 }
