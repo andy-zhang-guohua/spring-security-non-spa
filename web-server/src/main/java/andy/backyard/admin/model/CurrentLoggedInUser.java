@@ -2,6 +2,7 @@ package andy.backyard.admin.model;
 
 import lombok.Data;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.web.authentication.WebAuthenticationDetails;
 
 import java.time.LocalDateTime;
 import java.util.Map;
@@ -38,7 +39,9 @@ public class CurrentLoggedInUser {
         Object details = authentication.getDetails();
 
         String username = "";
-        if (principal instanceof Map) {
+        if (principal instanceof AdminDetails) {
+            username = ((AdminDetails) principal).getUsername();
+        } else if (principal instanceof Map) {
             username = ((Map) principal).getOrDefault("username", "").toString();
         } else if (principal instanceof String) {
             username = (String) principal;
@@ -46,6 +49,9 @@ public class CurrentLoggedInUser {
         user.setUsername(username);
 
         String remoteAddress = "";
+        if (details instanceof WebAuthenticationDetails) {
+            remoteAddress = ((WebAuthenticationDetails) details).getRemoteAddress();
+        }
         user.setRemoteAddress(remoteAddress);
 
         return user;
